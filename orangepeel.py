@@ -1,4 +1,4 @@
-from tkinter import filedialog
+from tkinter import filedialog, colorchooser
 from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
@@ -96,11 +96,15 @@ def brown():
     text.config(fg = 'brown')
 def black():
     text.config(fg = 'black')
+def colorpick():
+    colorchooser.askcolor()
 menu = Menu(root)
 file = Menu(menu, tearoff = 0, font = ('courier'))
 edit = Menu(menu, tearoff = 0, font = ('courier'))
 help = Menu(menu, tearoff = 0, font = ('courier'))
+tools = Menu(menu, tearoff = 0, font = ('courier'))
 textpref = Menu(menu, tearoff = 0, font = ('courier'))
+
 web = Button(root, text = 'preview in browser', font = ('courier', '12'), command = previewinbrowser, fg = 'blue')
 tags2txt = Button(root, text = 'export as plain text', font = ('courier', '12'), command = notags, fg = 'red')
 menu.add_cascade(label = "File", menu=file, font = ('courier'))
@@ -124,6 +128,8 @@ textpref.add_command(label = 'Blue', command = blue)
 textpref.add_command(label = 'Purple', command = purple)
 textpref.add_command(label = 'Brown', command = brown)
 textpref.add_command(label = 'Black', command = black)
+menu.add_cascade(label = 'Tools', menu = tools, font = ('courier'))
+tools.add_command(label="color picker", command = colorpick)
 
 scroll.pack(side = 'right', fill = 'y')
 scroll.config( command = text.yview )  
